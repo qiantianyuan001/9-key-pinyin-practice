@@ -54,14 +54,32 @@ function stopKeypressListener(handleKeypress) {
 }
 
 function pick(obj, keysArray) {
-    //pick函数，将obj中keysArray中的key挑出来
-    const result = {};
-    keysArray.forEach(key => {
-      if (key in obj) {
-        result[key] = obj[key];
-      }
-    });
-    return result;
-  }
+  //pick函数，将obj中keysArray中的key挑出来
+  const result = {};
+  keysArray.forEach(key => {
+    if (key in obj) {
+      result[key] = obj[key];
+    }
+  });
+  return result;
+}
 
-module.exports = { test, inputConfig, centerText, getRandomInt, stopKeypressListener, pick }; // 导出一个对象
+function secondsToMinutesSeconds(totalSeconds) {
+    // 输入验证
+    if (typeof totalSeconds !== 'number' || totalSeconds < 0 || isNaN(totalSeconds)) {
+        throw new Error('输入必须为非负数字');
+    }
+    // 取整处理[4](@ref)
+    const seconds = Math.floor(totalSeconds);
+    // 计算分钟和秒[1,5](@ref)
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    // 返回对象格式[1,4](@ref)
+    return {
+        minutes: minutes,
+        seconds: remainingSeconds
+    };
+}
+
+
+module.exports = { test, inputConfig, centerText, getRandomInt, stopKeypressListener, pick, secondsToMinutesSeconds }; // 导出一个对象
