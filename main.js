@@ -104,7 +104,7 @@ function practice(selectN, detail) {
       //console.log("触发1秒定时器");
       const timeDiff = process.hrtime(startTime); //记录结束时间，在需要测量的代码段结束后，调用 process.hrtime()并保存返回值。
       if ( timeDiff[0]>= detail) {
-        console.log(centerText("时间到，训练结束" + "   正确率：" + percent + "%" + "答对" + countCorrect + "次"));
+        console.log(centerText("时间到，训练结束" + "   正确率：" + percent + "%" + "   答对" + countCorrect + "次"));
         clearInterval(interval);
         stopKeypressListener(handleKeypress);
         main();
@@ -176,12 +176,6 @@ function practice(selectN, detail) {
           const timeDiff2 = process.hrtime(startTime); //记录结束时间，在需要测量的代码段结束后，调用 process.hrtime()并保存返回值。
           time = secondsToMinutesSeconds(timeDiff2[0]);
           console.log(centerText("输入正确" + "   正确率：" + percent + "%" + "   剩余：" + (detail - timeDiff2[0]) + "秒"));
-          if (timeDiff2[0] >= detail) {
-            console.log(centerText("训练结束" + "   正确率：" + percent + "%" + "   答对" + countCorrect + "次"));
-            stopKeypressListener(handleKeypress); //停止keypress事件监听
-            main(); //重新开始
-            return;
-          }
           break;
       }
       question();
